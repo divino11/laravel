@@ -45,6 +45,17 @@ class ArticleController extends Controller
     {
         $article = Article::create($request->all());
 
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $file->move('/images/', $filename);//папка для загрузки изображения
+
+        if($filename)
+        {
+            $articleImg = Article::find($article->id);
+            $articleImg->image = '/images/' . $filename;
+            $articleImg->save();
+        }
+
         //Categories
         if ($request->input('categories')) :
             $article->categories()->attach($request->input('categories'));

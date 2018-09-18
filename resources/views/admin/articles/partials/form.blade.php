@@ -12,6 +12,9 @@
 <label for="">Заголовок</label>
 <input type="text" class="form-control" name="title" placeholder="Заголовок новости" value="{{$article->title or ""}}" required>
 
+<label for="">Изображение</label>
+<input type="file" name="image">
+
 <label for="">Slug (Уникальное значение)</label>
 <input type="text" class="form-control" name="slug" placeholder="Автоматическая генерация" value="{{$article->slug or ""}}" readonly="">
 
