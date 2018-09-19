@@ -13,5 +13,22 @@
                 <p>{!!$article->description!!}</p>
             </div>
         </div>
+
+        @foreach($article->comments as $comment)
+            <div class="comment">
+                <p><strong>Имя:</strong> {{$comment->comment_author}}</p>
+                <p>{{$comment->comment}}</p>
+            </div>
+        @endforeach
+
+        <form class="form-horizontal" action="{{route('comments.store', $article->id)}}" method="post" id="comments">
+
+            {{ csrf_field() }}
+
+            {{-- Form include --}}
+
+            @include('blog.partials.form')
+
+        </form>
     </div>
 @endsection

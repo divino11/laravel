@@ -11,7 +11,7 @@
     <title>@yield('title')</title>
     <meta name="keywords" content="@yield('meta_keyword')">
     <meta name="description" content="@yield('meta_description')">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>

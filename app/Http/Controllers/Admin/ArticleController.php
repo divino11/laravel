@@ -47,12 +47,12 @@ class ArticleController extends Controller
 
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
-        $file->move('/images/', $filename);//папка для загрузки изображения
+        $file->move(public_path('uploads/' . $filename));//папка для загрузки изображения
 
         if($filename)
         {
             $articleImg = Article::find($article->id);
-            $articleImg->image = '/images/' . $filename;
+            $articleImg->image = public_path('uploads/' . $filename);
             $articleImg->save();
         }
 
