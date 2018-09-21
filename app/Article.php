@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Favorite;
+use App\User;
 
 class Article extends Model
 {
@@ -27,5 +29,13 @@ class Article extends Model
 
     public function comments() {
         return $this->hasMany('App\Comment');
+    }
+
+    public function like() {
+        return $this->hasMany('App\Like');
+    }
+
+    public function favorite() {
+        return $this->hasMany('App\Favorite');
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\Favorite;
 use Illuminate\Http\Request;
+use App\Article;
+use App\Like;
+use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Session;
 
-class FavoriteController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,11 +40,11 @@ class FavoriteController extends Controller
     {
         $article = Article::find($id_article);
 
-        $favorite = new Favorite();
-        $favorite->user_id = 1;
-        $favorite->article()->associate($article);
+        $like = new Like();
+        $like->user_id = 1;
+        $like->article()->associate($article);
 
-        $favorite->save();
+        $like->save();
 
         return back();
     }

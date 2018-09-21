@@ -13,9 +13,15 @@
 
 Route::get('/blog/category/{slug?}', 'BlogController@category')->name('category');
 Route::get('/blog/article/{slug?}', 'BlogController@article')->name('article');
+Route::get('/blog/all', 'BlogController@allArticles')->name('allArticles');
+Route::get('/favorites', 'FavoriteController@index')->name('index');
 
 //Comments
 Route::post('comments/{id_article}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
+//Like
+Route::get('like/{id_article}', ['uses' => 'LikeController@store', 'as' => 'like.store']);
+//Favorite
+Route::get('favorite/{id_article}', ['uses' => 'FavoriteController@store', 'as' => 'favorite.store']);
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@dashboard')->name('admin.index');

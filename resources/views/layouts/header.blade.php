@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/blog/all') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
         </div>
@@ -19,7 +19,9 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li><a href="{{url("/blog/all")}}">Все записи</a></li>
                 @include('layouts.top_menu', ['categories' => $categories])
+                <li><a href="{{ url('favorites') }}">Избранное</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
