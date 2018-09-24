@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Like;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LikeController extends Controller
@@ -41,7 +41,7 @@ class LikeController extends Controller
         $article = Article::find($id_article);
 
         $like = new Like();
-        $like->user_id = 1;
+        $like->user_id = Auth::user()->id;
         $like->article()->associate($article);
 
         $like->save();

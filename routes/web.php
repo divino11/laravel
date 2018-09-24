@@ -22,11 +22,13 @@ Route::post('comments/{id_article}', ['uses' => 'CommentsController@store', 'as'
 Route::get('like/{id_article}', ['uses' => 'LikeController@store', 'as' => 'like.store']);
 //Favorite
 Route::get('favorite/{id_article}', ['uses' => 'FavoriteController@store', 'as' => 'favorite.store']);
+Route::get('unfavorite/{id_article}', ['uses' => 'FavoriteController@destroy', 'as' => 'favorite.destroy']);
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@dashboard')->name('admin.index');
     Route::resource('/category', 'CategoryController', ['as' => 'admin']);
     Route::resource('/article', 'ArticleController', ['as' => 'admin']);
+    Route::resource('/comments', 'CommentController', ['as' => 'admin']);
     Route::group(['prefix' => 'user_managment', 'namespace' => 'UserManagment'], function () {
         Route::resource('/user', 'UserController', ['as' => 'admin.user_managment']);
     });

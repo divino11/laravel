@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Favorite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
@@ -15,7 +16,10 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        //
+        return view('favorites.index', [
+            'favorites' => Favorite::where('user_id', Auth::user()->id)->pluck('user_id'),
+            'allArticlesFromFavorite' => Favorite::orderBy('created_at', 'desc')->get()
+        ]);
     }
 
     /**
@@ -39,7 +43,7 @@ class FavoriteController extends Controller
         $article = Article::find($id_article);
 
         $favorite = new Favorite();
-        $favorite->user_id = 1;
+        $favorite->user_id = Auth::user()->id;
         $favorite->article()->associate($article);
 
         $favorite->save();
@@ -87,8 +91,9 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Favorite $favorite)
     {
-        //
+        $favorite->delete();
+        return back();
     }
 }

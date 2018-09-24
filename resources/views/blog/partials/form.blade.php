@@ -5,7 +5,9 @@
     @else
         <input type="hidden" name="id_article" value="{{ $article->id }}"/>
         <input type="hidden" name="comment_author" value="{{ Auth::user()->name }}"/>
+        <input type="hidden" name="comment_email" value="{{ Auth::user()->email }}"/>
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
+        <input type="hidden" name="comment_published" value="1"/>
 
         <label for="">Комментарий</label>
         <textarea class="form-control" name="comment" id="comment"></textarea>

@@ -55,6 +55,7 @@
                             <li><a href="{{route('admin.user_managment.user.index')}}">Пользователи</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{route('admin.comments.index')}}">Комментарии</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

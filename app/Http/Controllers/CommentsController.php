@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Comment;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Session;
 
 class CommentsController extends Controller
@@ -44,14 +45,15 @@ class CommentsController extends Controller
 
         $comment = new Comment();
         $comment->comment_author = $request->comment_author;
+        $comment->comment_email = $request->comment_email;
         $comment->comment = $request->comment;
+        $comment->comment_published = 1;
         $comment->user_id = $request->user_id;
         $comment->article()->associate($article);
 
         $comment->save();
-        Session::flash('success', 'Комментарий добавлен успешно');
 
-        return redirect()->route('article', [$article->slug]);
+        return redirect()->route('article', [$article->slug])->with('success', 'Комментарий добавлен успешно!!!');
     }
 
     /**

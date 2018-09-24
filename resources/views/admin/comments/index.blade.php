@@ -4,31 +4,33 @@
     <div class="container">
 
         @component('admin.components.breadcrumb')
-            @slot('title') Список новостей @endslot
+            @slot('title') Список комментариев @endslot
             @slot('parent') Главная @endslot
-            @slot('active') Новости @endslot
+            @slot('active') Комментарии @endslot
         @endcomponent
 
         <hr>
 
-        <a href="{{route('admin.article.create')}}" class="btn btn-primary pull-right"><i
-                    class="fa fa-plus-square"></i> Создать новость</a>
+        <a href="{{route('admin.comments.create')}}" class="btn btn-primary pull-right"><i
+                    class="fa fa-plus-square"></i> Создать комментарий</a>
         <table class="table table-striped">
             <thead>
-            <th>Наименование</th>
+            <th>Автор</th>
+            <th>Сообщение</th>
             <th>Публикация</th>
             <th class="text-right">Действие</th>
             </thead>
             <tbody>
-            @forelse($articles as $article)
+            @forelse($comments as $comment)
                 <tr>
-                    <td>{{$article->title}}</td>
-                    <td>{{$article->published}}</td>
+                    <td>{{$comment->comment_author}}</td>
+                    <td>{{$comment->comment}}</td>
+                    <td>{{$comment->published}}</td>
                     <td class="text-right">
-                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false}" action="{{route('admin.article.destroy', $article)}}" method="post">
+                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false}" action="{{route('admin.comments.destroy', $comment)}}" method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             {{ csrf_field() }}
-                            <a class="btn btn-default" href="{{route('admin.article.edit', $article)}}"><i
+                            <a class="btn btn-default" href="{{route('admin.comments.edit', $comment)}}"><i
                                         class="fa fa-edit"></i></a>
                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                         </form>
@@ -43,7 +45,7 @@
             <tfoot>
             <td colspan="3">
                 <ul class="pagination pull-right">
-                    {{$articles->links()}}
+                    {{$comments->links()}}
                 </ul>
             </td>
             </tfoot>
