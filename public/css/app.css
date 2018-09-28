@@ -75,3 +75,16 @@
 .allArticles {
     margin-bottom: 40px;
 }
+
+.article_body {
+    display: inline-block;
+    width: 100%;
+    height: 264px;
+}
+
+.footer_badges {
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+}

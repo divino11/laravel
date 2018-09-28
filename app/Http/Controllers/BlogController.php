@@ -14,7 +14,7 @@ class BlogController extends Controller
     public function allArticles()
     {
         return view('blog.all', [
-            'articles' => Article::orderBy('created_by', 'desc')->paginate(10),
+            'articles' => Article::orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
 

@@ -17,7 +17,7 @@ class FavoriteController extends Controller
     public function index()
     {
         return view('favorites.index', [
-            'favorites' => Favorite::where('user_id', Auth::user()->id)->pluck('user_id'),
+            'favorites' => Favorite::where('user_id', 1)->get(),
             'allArticlesFromFavorite' => Favorite::orderBy('created_at', 'desc')->get()
         ]);
     }
