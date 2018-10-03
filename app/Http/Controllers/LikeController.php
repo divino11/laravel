@@ -89,8 +89,12 @@ class LikeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_article)
     {
-        //
+        $like = Like::where(['article_id' => $id_article, 'user_id' => Auth::id()])->get();
+        foreach ($like as $item) {
+            $item->delete();
+        }
+        return back();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Article;
+use App\Favorite;
 use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class BlogController extends Controller
     public function allArticles()
     {
         return view('blog.all', [
-            'articles' => Article::orderBy('created_at', 'desc')->paginate(10),
+            'articles' => Article::orderBy('created_at', 'desc')->where('published', 1)->paginate(10),
         ]);
     }
 
@@ -27,6 +28,17 @@ class BlogController extends Controller
             'articles' => $category->articles()->where('published', 1)->paginate(12)
         ]);
     }
+
+    public function favorite($user_id)
+    {
+        $favorite = Favorite::where('user_id', $user_id)->first();
+
+        return view('blog.category', [
+            'favorite' => $favorite,
+            'articles' => $favorite->articles()->where('published', 1)->paginate(12)
+        ]);
+    }
+
 
     public function article($slug)
     {

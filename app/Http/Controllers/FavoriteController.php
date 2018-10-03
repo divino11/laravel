@@ -22,6 +22,16 @@ class FavoriteController extends Controller
         ]);
     }
 
+    public function favorite($user_id)
+    {
+        $favorite = Favorite::where('user_id', $user_id)->first();
+
+        return view('favorites.index', [
+            'favorite' => $favorite,
+            'articles' => $favorite->articles()->where('published', 1)->paginate(12)
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -91,9 +101,12 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorite $favorite)
+    public function destroy($id_article)
     {
-        $favorite->delete();
+        $favorite = Favorite::where(['article_id' => $id_article, 'user_id' => Auth::id()])->get();
+        foreach ($favorite as $item) {
+            $item->delete();
+        }
         return back();
     }
 }

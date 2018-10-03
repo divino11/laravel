@@ -20,6 +20,7 @@ Route::get('/favorites', 'FavoriteController@index')->name('index');
 Route::post('comments/{id_article}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
 //Like
 Route::get('like/{id_article}', ['uses' => 'LikeController@store', 'as' => 'like.store']);
+Route::get('unlike/{id_article}', ['uses' => 'LikeController@destroy', 'as' => 'like.destroy']);
 //Favorite
 Route::get('favorite/{id_article}', ['uses' => 'FavoriteController@store', 'as' => 'favorite.store']);
 Route::get('unfavorite/{id_article}', ['uses' => 'FavoriteController@destroy', 'as' => 'favorite.destroy']);

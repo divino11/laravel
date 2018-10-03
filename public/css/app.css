@@ -88,3 +88,13 @@
     position: absolute;
     bottom: 20px;
 }
+
+button.badges i {
+    color: #3097d1;
+}
+button.badges {
+    background-color: transparent;
+    border: none;
+    margin: auto;
+    display: block;
+}
